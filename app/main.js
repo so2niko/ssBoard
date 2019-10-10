@@ -23,7 +23,7 @@ const v_chat = new Vue({
                         return {
                             name: msg.message.chat.first_name,
                             time: new Date(msg.message.date * 1000).toLocaleString("ru-UA", {hour12: false}),
-                            text : (msg.message.hasOwnProperty('text'))? msg.message.text, 
+                            text : (msg.message.hasOwnProperty('text'))? msg.message.text: msg.message.sticker.emoji
                         }
                     }
                 );
