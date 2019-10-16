@@ -11,21 +11,31 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <div class="columns">
+    <div class="columns"  id="chat">
         <div class="column">
-            <div id="chat">
+            <div>
+                <input type="text" v-model="sendMsg" placeholder="type message">
+                <button v-on:click="sendMessage2All">Send</button>
+            </div>
+            <ul>
+                <li v-for="chat in chats"> {{ chat }}</li>
+            </ul>
+        </div>
+        <div class="column">
+            <div>
                 <article v-for="msg in remoteData" class="message">
                     <div class="message-header">
                         <p class="name">{{ msg.name }}</p>
                         <p class="date">{{ msg.time }}</p>
                     </div>
                     <div class="message-body">
-                        {{ msg.text }}
+                        <a target="_blank" v-bind:href="msg.info.text" v-if="msg.info.isLink">{{ msg.info.text }}</a>
+                        <span v-if="!msg.info.isLink">{{ msg.info.text }}</span>
                     </div>
                 </article>
             </div>
         </div>
-        <div class="column">6-columns (one-half)</div>
+
     </div>
 
     <script src="app/main.js"></script>
