@@ -42,8 +42,11 @@ const v_chat = new Vue({
                 };
             }
 
-            return {
+            return msg.message.hasOwnProperty('sticker')? {
                 text : msg.message.sticker.emoji,
+                isLink : false
+            }: {
+                text : 'no info',
                 isLink : false
             };
         },
